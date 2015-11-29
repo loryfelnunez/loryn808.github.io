@@ -47,7 +47,7 @@ This function must generate random letters corresponding to the letters in the i
         return "".join(in[i] if i in index else alphabet[random.randrange(strlen)] for i in range(strlen))
  ```
   
-In this informative [blog post] (http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html), it encourages the use of list comprehensions while keeping it simple.  This means limiting conditions inside list comprehensions to two or three.
+In this informative [blog post](http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html), it encourages the use of list comprehensions while keeping it simple.  This means limiting conditions inside list comprehensions to two or three.
 
 Looking at `selective_generate_2`, we have reduced static  style verbosity, used ternary operators with a list comprehension, used range,  and used join for string concatenation.  The downside is that we might be sacrificing a little readability with everything in one line. We should be mindful in the order we right one-liners like this.  
 
