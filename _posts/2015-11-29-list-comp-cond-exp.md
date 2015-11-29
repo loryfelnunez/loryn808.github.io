@@ -16,34 +16,34 @@ My goal was to create a function to generate a random word generator given a lis
 
 For my input:
 
-```python
-in = "creed is a great movie"
-index = [1,3,5]
+```
+    in = "creed is a great movie"
+    index = [1,3,5]
 ```
 
 This function must generate random letters corresponding to the letters in the input string except if the letter is in the index position in the constant_index list.  For this example, we will not change 'r' in index 1, 'e' in index 3 and ' ' in index 5.
 
-```python
-import random
-def selective_generate_1(in, index):
-  alphabet = 'abcdefghijklmnopqrstuvwxyz '
-  i = 0
-  result = ''
-  strlen = len(in)
-  while i < strlen:
-    ch = ''
-    if i not in index:
-      ch = alphabet[random.randrange(strlen)]
-    else:
-      ch = in[i]
-    result += ch
-    i = i+1
-  return result
+```
+    import random
+    def selective_generate_1(in, index):
+        alphabet = 'abcdefghijklmnopqrstuvwxyz '
+        i = 0
+        result = ''
+        strlen = len(in)
+        while i < strlen:
+            ch = ''
+            if i not in index:
+                ch = alphabet[random.randrange(strlen)]
+            else:
+                ch = in[i]
+            result += ch
+            i = i+1
+        return result
 
-def selective_generate_2(in, index):
-  strlen = len(in)
-  alphabet= 'abcdefghijklmnopqrstuvwxyz '
-  return "".join(in[i] if i in index else alphabet[random.randrange(strlen)] for i in range(strlen))
+    def selective_generate_2(in, index):
+        strlen = len(in)
+        alphabet= 'abcdefghijklmnopqrstuvwxyz '
+        return "".join(in[i] if i in index else alphabet[random.randrange(strlen)] for i in range(strlen))
 ```
   
 In this informative [blog post](http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html), it encourages the use of list comprehensions while keeping it simple.  This means limiting conditions inside list comprehensions to two or three.
