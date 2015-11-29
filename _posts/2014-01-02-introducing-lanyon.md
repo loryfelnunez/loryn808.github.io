@@ -16,46 +16,48 @@ My goal was to create a function to generate a random word generator given a lis
 
 For my input:
 
-input_str = "creed is a great movie"
-constant_index = [1,3,5]
+```
+in = "creed is a great movie"
+index = [1,3,5]
+```
 
 This function must generate random letters corresponding to the letters in the input string except if the letter is in the index position in the constant_index list.  For this example, we will not change 'r' in index 1, 'e' in index 3 and ' ' in index 5.
 
   ```
   import random
   
-  def selective_generate_1(input_str, constant_index):
+  def selective_generate_1(in, index):
       alphabet = 'abcdefghijklmnopqrstuvwxyz '
       i = 0
       result = ''
-      strlen = len(input_str)
+      strlen = len(in)
       while i < strlen:
         ch = ''
-          if i not in constant_index:
+          if i not in index:
             ch = alphabet[random.randrange(strlen)]
           else:
-            ch = input_str[i]
+            ch = in[i]
           result += ch
           i = i+1
       return result
 
-  def selective_generate_2(input_str, constant_index):
-      strlen = len(input_str)
+  def selective_generate_2(in, index):
+      strlen = len(in)
       alphabet= 'abcdefghijklmnopqrstuvwxyz '
-      return "".join(input_str[i] if i in constant_index else alphabet[random.randrange(strlen)] for i in range(strlen))
+      return "".join(in[i] if i in index else alphabet[random.randrange(strlen)] for i in range(strlen))
   ```
   
-In this informative [blog post] (http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html), it encourages the use of list omprehensions while keeping it simple.  This means limiting conditions inside list comprehensions to two or three.
+In this informative [blog post] (http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html), it encourages the use of list comprehensions while keeping it simple.  This means limiting conditions inside list comprehensions to two or three.
 
-Looking at selective_generate_2, we have reduced static tyle style verbosity, used ternary operators with a list comprehension, used range,  and used join for string concatenation.  The downside is that we might be sacrificing a little readability with everything in one line. We should be mindful in the order we right one-liners like this.  
+Looking at `selective_generate_2`, we have reduced static  style verbosity, used ternary operators with a list comprehension, used range,  and used join for string concatenation.  The downside is that we might be sacrificing a little readability with everything in one line. We should be mindful in the order we right one-liners like this.  
 
-*We start with the individual element we want to process:* for i in range(strlen)
+*We start with the individual element we want to process:* `for i in range(strlen)`
 
-*Then we evaluate the ternary conditional operator:* if i in constant_index else alphabet[random.randrange(strlen)] 
+*Then we evaluate the ternary conditional operator:* `if i in constant_index else alphabet[random.randrange(strlen)]` 
 
-*Then we get the result and the result for each individual element are placed in a list:* input_str[i] or alphabet[random.randrange(strlen)]
+*Then we get the result and the result for each individual element are placed in a list:* `input_str[i] or alphabet[random.randrange(strlen)]`
 
-*Then we join the elements in a list as a string:* "".join(...)
+*Then we join the elements in a list as a string:* `"".join(...)`
             
 
 
