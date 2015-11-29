@@ -1,38 +1,58 @@
 ---
 layout: post
-title: Introducing Lanyon
+title: Trying to be Pythonic - List Comprehension with Conditional Expressions
 ---
 
-Lanyon is an unassuming [Jekyll](http://jekyllrb.com) theme that places content first by tucking away navigation in a hidden drawer. It's based on [Poole](http://getpoole.com), the Jekyll butler.
+In my attempt o write "Pythonic" code, I googled "Pythonic code".  How can code be considered "Pythonic"?
 
-### Built on Poole
+Quoting from this wonderful [blog post](http://blog.startifact.com/posts/older/what-is-pythonic.html)
 
-Poole is the Jekyll Butler, serving as an upstanding and effective foundation for Jekyll themes by [@mdo](https://twitter.com/mdo). Poole, and every theme built on it (like Lanyon here) includes the following:
+> To be Pythonic is to use the Python constructs and data structures with clean, readable idioms. It is Pythonic is to
+  exploit dynamic typing for instance, and it's definitely not Pythonic to introduce static-type style verbosity into the
+  picture where not needed. To be Pythonic is to avoid surprising experienced Python programmers with unfamiliar ways to  
+  accomplish a task.
 
-* Complete Jekyll setup included (layouts, config, [404](/404), [RSS feed](/atom.xml), posts, and [example page](/about))
-* Mobile friendly design and development
-* Easily scalable text and component sizing with `rem` units in the CSS
-* Support for a wide gamut of HTML elements
-* Related posts (time-based, because Jekyll) below each post
-* Syntax highlighting, courtesy Pygments (the Python-based code snippet highlighter)
+My goal was to create a function to generate a random word generator given a list of letter positions that must remain unchanged.
 
-### Lanyon features
+For my input:
 
-In addition to the features of Poole, Lanyon adds the following:
+input_str = "creed is a great movie"
+constant_index = [1,3,5]
 
-* Toggleable sliding sidebar (built with only CSS) via **☰** link in top corner
-* Sidebar includes support for textual modules and a dynamically generated navigation with active link support
-* Two orientations for content and sidebar, default (left sidebar) and [reverse](https://github.com/poole/lanyon#reverse-layout) (right sidebar), available via `<body>` classes
-* [Eight optional color schemes](https://github.com/poole/lanyon#themes), available via `<body>` classes
+This function must generate random letters corresponding to the letters in the input string except if the letter is in the index position in the constant_index list.  For this example, we will not change 'r' in index 1, 'e' in index 3 and ' ' in index 5.
 
-[Head to the readme](https://github.com/poole/lanyon#readme) to learn more.
+  `import random
+  
+  def selective_generate_1(input_str, constant_index):
+      alphabet = 'abcdefghijklmnopqrstuvwxyz '
+      i = 0
+      result = ''
+      strlen = len(input_str)
+      while i < strlen:
+        ch = ''
+          if i not in constant_index:
+            ch = alphabet[random.randrange(strlen)]
+          else:
+            ch = input_str[i]
+          result += ch
+          i = i+1
+      return result
 
-### Browser support
+  def selective_generate_2(input_str, constant_index):
+      strlen = len(input_str)
+      alphabet= 'abcdefghijklmnopqrstuvwxyz '
+      return "".join(input_str[i] if i in constant_index else alphabet[random.randrange(strlen)] for i in range(strlen))`
 
-Lanyon is by preference a forward-thinking project. In addition to the latest versions of Chrome, Safari (mobile and desktop), and Firefox, it is only compatible with Internet Explorer 9 and above.
+In this informative [blog post] (http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html), it encourages the use of list omprehensions while keeping it simple.  This means limiting conditions inside list comprehensions to two or three.
 
-### Download
+Looking at selective_generate_2, we have reduced static tyle style verbosity, used ternary operators with a list comprehension, used range,  and used join for string concatenation.  The downside is that we might be sacrificing a little readability with everything in one line. We should be mindful in the order we right one-liners like this.  
 
-Lanyon is developed on and hosted with GitHub. Head to the <a href="https://github.com/poole/lanyon">GitHub repository</a> for downloads, bug reports, and features requests.
+*We start with the individual element we want to process:* for i in range(strlen)
+*Then we evaluate the ternary conditional operator:* if i in constant_index else alphabet[random.randrange(strlen)] 
+*Then we get the result and the result for each individual element are placed in a list:* input_str[i] or alphabet[random.randrange(strlen)]
+*Then we join the elements in a list as a string:* "".join(...)
+            
 
-Thanks!
+
+
+ 
