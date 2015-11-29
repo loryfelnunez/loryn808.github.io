@@ -24,6 +24,7 @@ For my input:
 This function must generate random letters corresponding to the letters in the input string except if the letter is in the index position in the constant_index list.  For this example, we will not change 'r' in index 1, 'e' in index 3 and ' ' in index 5.
 
 ```
+
     import random
     def selective_generate_1(in, index):
         alphabet = 'abcdefghijklmnopqrstuvwxyz '
@@ -43,7 +44,9 @@ This function must generate random letters corresponding to the letters in the i
     def selective_generate_2(in, index):
         strlen = len(in)
         alphabet= 'abcdefghijklmnopqrstuvwxyz '
-        return "".join(in[i] if i in index else alphabet[random.randrange(strlen)] for i in range(strlen))
+        return "".join(in[i] if i in index 
+                            else alphabet[random.randrange(strlen)] 
+                            for i in range(strlen))
 ```
   
 In this informative [blog post](http://python.net/~goodger/projects/pycon/2007/idiomatic/handout.html), it encourages the use of list comprehensions while keeping it simple.  This means limiting conditions inside list comprehensions to two or three.
