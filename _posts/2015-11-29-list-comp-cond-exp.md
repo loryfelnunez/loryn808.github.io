@@ -21,7 +21,7 @@ For my input:
 
 This function must generate random letters corresponding to the letters in the input string except if the letter is in the index position in the constant_index list.  For this example, we will not change 'r' in index 1, 'e' in index 3 and ' ' in index 5.
 
-    import random
+        import random
         def selective_generate_1(in, index):
             alphabet = 'abcdefghijklmnopqrstuvwxyz '
             i = 0
