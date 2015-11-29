@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Trying to be Pythonic - List Comprehension with Conditional Expressions
+title: List Comprehension with Conditional Expressions
 ---
 
 In my attempt o write "Pythonic" code, I googled "Pythonic code".  How can code be considered "Pythonic"?
