@@ -16,10 +16,8 @@ My goal was to create a function to generate a random word generator given a lis
 
 For my input:
 
-```
     in = "creed is a great movie"
     index = [1,3,5]
-```
 
 This function must generate random letters corresponding to the letters in the input string except if the letter is in the index position in the constant_index list.  For this example, we will not change 'r' in index 1, 'e' in index 3 and ' ' in index 5.
 
